@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Downloader</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Tambahkan CSS animasi dan tema baru di sini */
+        body.light-theme {
+            background-color: #f0f8ff;
+            color: #333;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body.dark-theme {
+            background-color: #2c2c2c;
+            color: #f0f8ff;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .navbar {
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar.light-theme {
+            background-color: #ffffff;
+        }
+
+        .navbar.dark-theme {
+            background-color: #444444;
+        }
+
+        .form-control.light-theme {
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        .form-control.dark-theme {
+            background-color: #333333;
+            color: #ffffff;
+        }
+
+        .btn-primary {
+            background-color: #ff4500;
+            border-color: #ff4500;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #ff6347;
+            border-color: #ff6347;
+        }
+
+        .btn-secondary {
+            background-color: #1e90ff;
+            border-color: #1e90ff;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #4682b4;
+            border-color: #4682b4;
+        }
+
+        .fade-in {
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 1s ease-in-out;
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        .bounce {
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+            margin-top: 20px;
+        }
+
+        .container {
+            padding-top: 50px;
+        }
+
+        /* Gaya untuk bagian cara menggunakan website */
+        #howToUse {
+            display: none;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 20px;
+        }
+
+        #howToUse h5 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #4e4e4e;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        #howToUse ol {
+            list-style-type: decimal;
+            font-size: 1rem;
+            color: #555;
+            animation: slideInLeft 1s ease-in-out;
+        }
+
+        #howToUse li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body class="light-theme fade-in">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light slide-in-left">
+            <a class="navbar-brand" id="siteName" href="#">𝐃𝐨𝐧𝐕𝐢𝐝𝐓𝐢𝐤</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://donvidtik.vercel.app" id="videoTab">Video</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://donmustik.onrender.com" id="musicTab">Music</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="kontak/index.html">Kontak</a>
+                    </li>
+                    <!-- Pilihan bahasa -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Language
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="languageDropdown">
+                            <a class="dropdown-item" href="#" id="langIndonesia">Indonesia</a>
+                            <a class="dropdown-item" href="#" id="langEnglish">English</a>
+                        </div>
+                    </li>
+                    <button id="themeToggle" class="btn btn-secondary ml-2">
+                        <i class="fas fa-sun bounce"></i>
+                    </button>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="d-flex justify-content-center">
+            <h4 class="slide-in-right">TikTok Video Downloader</h4>
+        </div>
+        <form id="downloadForm" class="form-inline justify-content-center flex-column align-items-center">
+            <div class="form-group w-100 d-flex mb-2">
+                <input type="text" id="videoUrl" class="form-control light-theme" placeholder="Paste TikTok link here" required style="flex-grow: 1;">
+                <button type="button" id="pasteButton" class="btn btn-secondary ml-2">Paste</button>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Download</button>
+        </form>
+        <div id="result" class="mt-3"></div>
+        <!-- Tambahkan spinner di sini -->
+        <div id="loadingSpinner" class="spinner-border text-primary" role="status" style="display: none;">
+            <span class="sr-only">Loading...</span>
+        </div>
+
+        <!-- Tambahkan ikon tanda tanya untuk cara menggunakan website -->
+        <div class="text-center mt-3">
+            <i id="toggleHowToUse" class="fas fa-question-circle fa-2x" style="cursor: pointer;"></i>
+        </div>
+        
+        <!-- Tambahkan cara menggunakan website dengan animasi -->
+        <div id="howToUse" class="mt-5">
+            <h5 class="slide-in-left" id="howToUseTitle">Cara Menggunakan Website:</h5>
+            <ol class="slide-in-left" id="howToUseList">
+                <li>Salin tautan video TikTok yang ingin Anda unduh.</li>
+                <li>Tempel tautan tersebut ke dalam kolom input di atas.</li>
+                <li>Klik tombol "Tempel" jika ingin menggunakan teks dari clipboard.</li>
+                <li>Klik tombol "Download" untuk memulai proses pengunduhan.</li>
+                <li>Hasil unduhan akan muncul di bawah kolom input setelah proses selesai.</li>
+            </ol>
+        </div>
+    </main>
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Ambil elemen-elemen yang diperlukan
+        const toggleHowToUse = document.getElementById('toggleHowToUse');
+        const howToUse = document.getElementById('howToUse');
+        const howToUseTitle = document.getElementById('howToUseTitle');
+        const howToUseList = document.getElementById('howToUseList');
+        const pasteButton = document.getElementById('pasteButton');
+        const langIndonesia = document.getElementById('langIndonesia');
+        const langEnglish = document.getElementById('langEnglish');
+
+        // Fungsi untuk mengubah bahasa ke Indonesia
+        function setLanguageToIndonesia() {
+            howToUseTitle.textContent = 'Cara Menggunakan Website:';
+            howToUseList.innerHTML = `
+                <li>Salin tautan video TikTok yang ingin Anda unduh.</li>
+                <li>Tempel tautan tersebut ke dalam kolom input di atas.</li>
+                <li>Klik tombol "Tempel" jika ingin menggunakan teks dari clipboard.</li>
+                <li>Klik tombol "Download" untuk memulai proses pengunduhan.</li>
+                <li>Hasil unduhan akan muncul di bawah kolom input setelah proses selesai.</li>
+            `;
+            pasteButton.textContent = 'Tempel';
+        }
+
+        // Fungsi untuk mengubah bahasa ke English
+        function setLanguageToEnglish() {
+            howToUseTitle.textContent = 'How to Use the Website:';
+            howToUseList.innerHTML = `
+                <li>Copy the TikTok video link you want to download.</li>
+                <li>Paste the link into the input field above.</li>
+                <li>Click the "Paste" button if you want to use text from the clipboard.</li>
+                <li>Click the "Download" button to start the download process.</li>
+                <li>The download result will appear below the input field after the process is complete.</li>
+            `;
+            pasteButton.textContent = 'Paste';
+        }
+
+        // Event listener untuk pilihan bahasa Indonesia
+        langIndonesia.addEventListener('click', function(event) {
+            event.preventDefault();
+            setLanguageToIndonesia();
+        });
+
+        // Event listener untuk pilihan bahasa English
+        langEnglish.addEventListener('click', function(event) {
+            event.preventDefault();
+            setLanguageToEnglish();
+        });
+
+        // Event listener untuk ikon tanda tanya cara menggunakan website
+        toggleHowToUse.addEventListener('click', function() {
+            howToUse.style.display = (howToUse.style.display === 'none' || howToUse.style.display === '') ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>
